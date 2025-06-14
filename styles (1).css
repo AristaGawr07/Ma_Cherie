@@ -1,0 +1,119 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffebee 100%);
+    overflow: hidden;
+    font-family: 'Dancing Script', cursive;
+}
+
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #d32f2f;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    border: 2px solid #d32f2f;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #d32f2f;
+    color: white;
+}
+
+.flower-word {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+}
+
+.word-flower {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 20px;
+}
+
+.petal {
+    position: absolute;
+    width: 40px;
+    height: 80px;
+    background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+    border-radius: 150px 150px 0 0;
+    transform-origin: bottom center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #5d4037;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.flower-center {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #ffeb3b;
+    border-radius: 50%;
+    top: 45px;
+    left: 45px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: #5d4037;
+}
+
+.word-text {
+    margin-top: 20px;
+    font-size: 24px;
+    color: #d32f2f;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Añade estas reglas  */
+
+.flower-word {
+    will-change: transform, opacity; /* Optimización para animaciones */
+    transform-origin: center;
+}
+
+.word-flower {
+    will-change: transform;
+}
+
+.petal {
+    will-change: transform;
+    transition: transform 0.3s ease-out;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.word-text {
+    will-change: transform, opacity;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}

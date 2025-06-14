@@ -1,0 +1,290 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    overflow: hidden;
+    font-family: 'Georgia', serif;
+    transition: background 1s ease;
+}
+
+.heart-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heart {
+    position: absolute;
+    width: 150px;
+    height: 135px;
+    animation: heartbeat 1.5s infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 78px;
+    height: 120px;
+    background: linear-gradient(45deg, #ff5252 0%, #d32f2f 100%);
+    border-radius: 75px 75px 0 0;
+    box-shadow: 0 0 20px rgba(211, 47, 47, 0.6);
+}
+
+.heart::before {
+    left: 75px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.initial-message {
+    position: absolute;
+    font-size: 28px;
+    font-weight: bold;
+    color: #d32f2f;
+    text-align: center;
+    z-index: 2;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+    animation: pulse 2s infinite alternate;
+}
+
+.falling-hearts {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.falling-hearts span {
+    position: absolute;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: linear-gradient(45deg, #ff5252 0%, #d32f2f 100%);
+    clip-path: path('M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z');
+    animation: fall 8s linear infinite;
+    opacity: 0.8;
+    border-radius: 50%;
+}
+
+/* Estilos para las frases románticas */
+.romantic-phrase {
+    position: absolute;
+    width: 250px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    color: #5d4037;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 1s ease;
+    z-index: 5;
+}
+
+.romantic-phrase.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.romantic-phrase::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #ff5252;
+    border-radius: 50%;
+    top: -15px;
+    left: -15px;
+    z-index: -1;
+}
+
+.romantic-phrase::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ffeb3b;
+    border-radius: 50%;
+    bottom: -10px;
+    right: -10px;
+    z-index: -1;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.05);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    75% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-50px) rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg) scale(1);
+        opacity: 0;
+    }
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.main-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    line-height: 1.6;
+    color: #5d4037;
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeInUp 2s forwards 4s;
+}
+
+.signature {
+    font-style: italic;
+    margin-top: 20px;
+    font-size: 22px;
+    color: #d32f2f;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Estilos para las imágenes expandibles */
+.image-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+.image-container.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.expanded-image {
+    max-width: 90%;
+    max-height: 90%;
+    border: 10px solid white;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8);
+    transition: transform 1s ease;
+    object-fit: contain;
+}
+
+.image-container.active .expanded-image {
+    transform: scale(1);
+}
+
+.special-message-link {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff5252;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.special-message-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 11;
+}
